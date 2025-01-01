@@ -1,0 +1,423 @@
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap");
+
+$imageFileName: "hiking", "lake", "hot-spring";
+
+:root {
+  --d: 700ms;
+  --e: cubic-bezier(0.19, 1, 0.22, 1);
+  --bg-layout: #1e1e1e;
+  --bg-section: #2c9182;
+  --bg-hero-sky: #d7d771;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body,
+html {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  background: var(--bg-layout);
+  scroll-behavior: smooth;
+}
+
+main {
+  position: relative;
+  width: 100%;
+  max-width: 1280px;
+  height: 100%;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+section {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: var(--bg-section);
+  padding: 5rem;
+}
+
+h2 {
+  margin-bottom: 16px;
+  font-weight: 900;
+  color: #1c3b4a;
+}
+
+h5 {
+  margin-bottom: 4px;
+  color: #1c3b4a;
+}
+
+p {
+  line-height: 1.6;
+  max-width: 40rem;
+  color: #1c3b4a;
+}
+
+#hero {
+  position: relative;
+  height: 100vh;
+  background: linear-gradient(
+    to bottom,
+    var(--bg-hero-sky) 80%,
+    var(--bg-section) 20%
+  );
+  padding: 0;
+}
+
+#sky,
+#mountain,
+#grass,
+#tree {
+  position: absolute;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+#tree {
+  bottom: 0;
+  left: 0;
+  height: 100%;
+}
+
+#sky {
+  bottom: 0;
+  left: 0;
+  height: 100%;
+  transform: translateY(75%);
+}
+
+#mountain {
+  bottom: -1vh;
+  left: -10vh;
+  transform: translateY(100%) scale(0);
+}
+
+#grass {
+  bottom: -5vh;
+  left: 0;
+  // height: 100%;
+  transform: translateY(75%) scale(0.1);
+}
+
+#title {
+  width: 100%;
+  text-align: center;
+  position: relative;
+  width: 100%;
+  font-size: 20vh;
+  font-weight: bold;
+  top: min(calc(30vh + 10vw), 50%);
+  color: #0f2233;
+  text-transform: uppercase;
+  transform: translateY(75%) scale(0.5);
+  opacity: 0;
+}
+
+#about {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  // min-height: 100vh;
+  text-align: left;
+  padding: 5rem;
+  flex-wrap: wrap;
+  gap: 2rem;
+
+  .about-text {
+    flex: 1;
+
+    h2 {
+      font-size: 2.8rem;
+    }
+
+    h5 {
+      font-size: 1.1rem;
+    }
+
+    p {
+      font-size: 1.3rem;
+    }
+  }
+
+  .about-image {
+    flex: 1;
+    display: flex;
+    justify-content: end;
+    align-items: end;
+
+    img {
+      max-width: 480px;
+      max-height: 640px;
+      height: auto;
+      border-radius: 24px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  #about {
+    align-items: flex-start;
+  }
+
+  .about-text,
+  .about-image {
+    flex: 0 0 100%;
+    margin-bottom: 2rem;
+  }
+
+  .about-image img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+#activities {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 2.5rem;
+
+  h5 {
+    opacity: 0;
+    transform: translateY(-10%);
+    font-size: 1.4rem;
+  }
+
+  h2 {
+    opacity: 0;
+    transform: translateY(-10%);
+    font-size: 3.2rem;
+  }
+
+  .activities-card-container {
+    display: flex;
+    gap: 4rem;
+    justify-content: center;
+  }
+
+  .activity-card {
+    width: 300px;
+    height: 400px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    display: flex;
+    align-items: flex-end;
+    text-align: center;
+    padding: 1rem;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1), 0 2px 2px rgba(0, 0, 0, 0.1),
+      0 4px 4px rgba(0, 0, 0, 0.1), 0 8px 8px rgba(0, 0, 0, 0.1),
+      0 16px 16px rgba(0, 0, 0, 0.1);
+
+    &:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 110%;
+      background-size: cover;
+      background-position: 0 0;
+      transition: transform calc(var(--d) * 1.5) var(--e);
+      pointer-events: none;
+    }
+
+    &:after {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 200%;
+      pointer-events: none;
+      transform: translateY(-50%);
+      transition: transform calc(var(--d) * 2) var(--e);
+      background-image: linear-gradient(
+        to bottom,
+        hsla(0, 0%, 0%, 0) 0%,
+        hsla(0, 0%, 0%, 0.207) 78.8%,
+        hsla(0, 0%, 0%, 0.268) 83.6%,
+        hsla(0, 0%, 0%, 0.321) 88.7%,
+        hsla(0, 0%, 0%, 0.362) 94.1%,
+        hsla(0, 0%, 0%, 0.39) 100%
+      );
+    }
+
+    @each $name in $imageFileName {
+      $i: index($imageFileName, $name);
+
+      &:nth-child(#{$i}):before {
+        background-image: url("https://yossyadirta.github.io/codepen/rinjani-parallax/assets/#{$name}.jpg");
+      }
+    }
+
+    .activity-card-content {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      padding: 1rem;
+      transition: transform 10 var(--e);
+      z-index: 1;
+
+      > * + * {
+        margin-top: 1rem;
+      }
+
+      .activity-card-title {
+        color: white;
+        font-size: 1.3rem;
+        font-weight: bold;
+        line-height: 1.2;
+      }
+
+      .activity-card-body {
+        width: 100%;
+        color: white;
+        font-size: 1rem;
+        opacity: 0;
+        display: none;
+        transform: translateY(10px);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+      }
+    }
+
+    &:hover,
+    &:focus-within {
+      align-items: center;
+
+      &:before {
+        transform: translateY(-4%);
+      }
+
+      &:after {
+        transform: translateY(-50%);
+        background-image: linear-gradient(
+          to bottom,
+          hsla(0, 0%, 0%, 0) 0%,
+          hsla(0, 0%, 0%, 0.009) 11.7%,
+          hsla(0, 0%, 0%, 0.034) 22.1%,
+          hsla(0, 0%, 0%, 0.072) 31.2%,
+          hsla(0, 0%, 0%, 0.123) 39.4%,
+          hsla(0, 0%, 0%, 0.182) 46.6%,
+          hsla(0, 0%, 0%, 0.249) 53.1%,
+          hsla(0, 0%, 0%, 0.32) 58.9%,
+          hsla(0, 0%, 0%, 0.394) 64.3%,
+          hsla(0, 0%, 0%, 0.468) 69.3%,
+          hsla(0, 0%, 0%, 0.54) 74.1%,
+          hsla(0, 0%, 0%, 0.607) 78.8%,
+          hsla(0, 0%, 0%, 0.668) 83.6%,
+          hsla(0, 0%, 0%, 0.721) 88.7%,
+          hsla(0, 0%, 0%, 0.762) 94.1%,
+          hsla(0, 0%, 0%, 0.79) 100%
+        );
+      }
+
+      .activity-card-content {
+        transform: translateY(0);
+
+        > *:not(.activity-card-title) {
+          opacity: 1;
+          display: block;
+          transform: translateY(0);
+          transition-delay: calc(var(--d) / 8);
+        }
+      }
+    }
+
+    &:focus-within {
+      &:before,
+      &:after,
+      .activity-card-content,
+      .activity-card-content > *:not(.activity-card-title) {
+        transition-duration: 0s;
+      }
+    }
+  }
+}
+
+#cta {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 4rem 2rem;
+  text-align: center;
+  color: #fff;
+  overflow: hidden;
+  background: black;
+  height: 100vh;
+
+  .background-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.7),
+        rgba(0, 0, 0, 0.7)
+      ),
+      url("https://yossyadirta.github.io/codepen/rinjani-parallax/assets/cta.jpg")
+        no-repeat center center;
+    z-index: 1;
+    background-size: cover;
+    height: 100%;
+    transition: height 1s ease-in-out;
+  }
+
+  h2,
+  p,
+  button {
+    font-size: 1.3rem;
+    z-index: 1;
+    color: white;
+    transform: translateY(20px);
+    opacity: 1;
+  }
+
+  h2 {
+    font-size: 2.8rem;
+  }
+
+  p {
+    max-width: 100%;
+  }
+
+  button {
+    font-weight: 600;
+    padding: 1rem 2rem;
+    background-color: var(--bg-section);
+    color: #1c3b4a;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+  }
+
+  button:hover {
+    background-color: var(--bg-section);
+    filter: brightness(90%);
+    transform: scale(1.05);
+  }
+
+  button:active {
+    transform: scale(1);
+    background-color: var(--bg-section);
+    filter: brightness(90%);
+  }
+}
